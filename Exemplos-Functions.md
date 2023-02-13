@@ -52,3 +52,41 @@ FORM f_check_user  USING    VALUE(p_user) TYPE sy-uname
 
 ENDFORM.
 ```
+
+##Programa para chamar a sua função
+```abap
+*&---------------------------------------------------------------------*
+*& Report YDO9_REPORT_002
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ydo9_report_002.
+
+DATA:
+  v_user_ok TYPE boolean.
+
+PARAMETERS:
+  p_user TYPE sy-uname OBLIGATORY.
+
+START-OF-SELECTION.
+
+  CALL FUNCTION 'YDO9_CHECK_USER'
+    EXPORTING
+      i_user             = p_user
+    IMPORTING
+      e_user_ok          = v_user_ok
+    EXCEPTIONS
+      error_invalid_user = 1
+      OTHERS             = 2.
+
+  IF sy-subrc NE 0.
+    MESSAGE 'Usuário não existe' TYPE 'S' DISPLAY LIKE 'E'.
+    STOP.
+  ENDIF.
+
+  IF v_user_ok IS INITIAL.
+    MESSAGE 'Usuário não foi validado com sucesso' TYPE 'S' DISPLAY LIKE 'W'.
+  ELSE.
+    MESSAGE 'Usuário validado com sucesso' TYPE 'S'.
+  ENDIF.
+```
