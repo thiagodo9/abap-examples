@@ -1,4 +1,4 @@
-##Função YDO9_CHECK_USER
+## Função YDO9_CHECK_USER
 
 ```abap
 FUNCTION ydo9_check_user.
@@ -28,7 +28,7 @@ FUNCTION ydo9_check_user.
 ENDFUNCTION.
 ```
 
-##Include de rotinas
+## Include de rotinas
 ```abap
 *----------------------------------------------------------------------*
 ***INCLUDE LYDO9_FUNCTIONSF01.
@@ -53,7 +53,7 @@ FORM f_check_user  USING    VALUE(p_user) TYPE sy-uname
 ENDFORM.
 ```
 
-##Programa para chamar a sua função
+## Programa para chamar a sua função
 ```abap
 *&---------------------------------------------------------------------*
 *& Report YDO9_REPORT_002
